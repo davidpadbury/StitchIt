@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using StitchIt.Handlers;
+using System.Linq;
 
 namespace StitchIt
 {
@@ -9,6 +12,13 @@ namespace StitchIt
         const string ResourceBase = @"StitchIt.Resources";
         const string StitchItWrapperName = ResourceBase + @".stitchIt.js";
         const string StitchItModuleWrapperName = ResourceBase + @".stitchItModule.js";
+
+        readonly IEnumerable<IFileHandler> _fileHandlers;
+
+        public StitchItPackager(IEnumerable<IFileHandler> fileHandlers)
+        {
+            _fileHandlers = fileHandlers;
+        }
 
         public string Package(string rootPath)
         {
@@ -22,31 +32,37 @@ namespace StitchIt
             // Make sure the path ends with a directory separator
             if (rootPath[rootPath.Length - 1] != Path.DirectorySeparatorChar)
                 rootPath = rootPath + Path.DirectorySeparatorChar;
-            
-            var jsFiles = Directory.EnumerateFiles(rootPath, @"*.js", SearchOption.AllDirectories);
+
             var modulesBuilder = new StringBuilder();
             var moduleWrapper = GetStitchItModuleWrapper();
             var stitchItWrapper = GetStitchItWrapper();
             var separate = false;
 
-            foreach (var filePath in jsFiles)
+            foreach (var handler in _fileHandlers)
             {
-                // TODO: This is a really dumb way to find the relative path
-                var relativePath = filePath.Replace(rootPath, string.Empty);
+                var pattern = string.Format("*.{0}", handler.Extension);
+                var files = Directory.EnumerateFiles(rootPath, pattern, SearchOption.AllDirectories);
 
-                var identifer = GenerateIdentifier(relativePath);
-                var content = File.ReadAllText(filePath);
+                foreach (var filePath in files)
+                {
+                    // TODO: This is a really dumb way to find the relative path
+                    var relativePath = filePath.Replace(rootPath, string.Empty);
 
-                var module = moduleWrapper
-                    .Replace("**MODULE**", content)
-                    .Replace("**IDENTIFIER**", identifer);
+                    var identifer = GenerateIdentifier(relativePath);
+                    var fileContent = File.ReadAllText(filePath);
+                    var moduleContent = handler.Build(fileContent);
 
-                if (separate)
-                    modulesBuilder.Append(",");
+                    var module = moduleWrapper
+                        .Replace("**MODULE**", fileContent)
+                        .Replace("**IDENTIFIER**", identifer);
 
-                modulesBuilder.Append(module);
+                    if (separate)
+                        modulesBuilder.Append(",");
 
-                separate = true;
+                    modulesBuilder.Append(module);
+
+                    separate = true;
+                }
             }
 
             var stitchIt = stitchItWrapper.Replace("**MODULES**", modulesBuilder.ToString());

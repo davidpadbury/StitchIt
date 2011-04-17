@@ -10,7 +10,7 @@ namespace StitchIt
 {
     public class StitchItHandler : IHttpHandler, IRouteHandler
     {
-        readonly StitchItPackager _packager = new StitchItPackager();
+        readonly StitchItPackager _packager = new DefaultStitchItPackagerFactory().Build();
         readonly string _rootPath;
         readonly string _publicationPath;
 

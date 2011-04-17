@@ -63,7 +63,7 @@ namespace StitchIt.Specs
         {
             var path = Path.Combine(@"..\..\Fixtures", fixture);
 
-            var packager = new StitchItPackager();
+            var packager = new DefaultStitchItPackagerFactory().Build();
             var content = packager.Package(path);
 
             Engine = new ScriptEngine();
