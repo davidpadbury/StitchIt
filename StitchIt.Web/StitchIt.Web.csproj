@@ -81,8 +81,9 @@
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="index.html" />
-    <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\person.js" />
+    <Content Include="Scripts\app\increment.js" />
+    <Content Include="Scripts\app\math.js" />
+    <Content Include="Scripts\app\program.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

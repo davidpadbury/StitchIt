@@ -47,6 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteCollectionExtensions.cs" />
     <Compile Include="StitchItHandler.cs" />
+    <Compile Include="StitchItPackager.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\stitchIt.js" />
