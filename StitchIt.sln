@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StitchIt.Web", "StitchIt.Web\StitchIt.Web.csproj", "{8AE841E9-BD9C-4BC6-B6F7-56D8C93D518C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StitchIt", "StitchIt\StitchIt.csproj", "{497F6490-7235-4D1B-8CB3-18F21D073E71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StitchIt.Specs", "StitchIt.Specs\StitchIt.Specs.csproj", "{DD79190D-B5BE-4AB3-8A73-51EA5447E952}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AE841E9-BD9C-4BC6-B6F7-56D8C93D518C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE841E9-BD9C-4BC6-B6F7-56D8C93D518C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE841E9-BD9C-4BC6-B6F7-56D8C93D518C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE841E9-BD9C-4BC6-B6F7-56D8C93D518C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{497F6490-7235-4D1B-8CB3-18F21D073E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{497F6490-7235-4D1B-8CB3-18F21D073E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{497F6490-7235-4D1B-8CB3-18F21D073E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{497F6490-7235-4D1B-8CB3-18F21D073E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD79190D-B5BE-4AB3-8A73-51EA5447E952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD79190D-B5BE-4AB3-8A73-51EA5447E952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD79190D-B5BE-4AB3-8A73-51EA5447E952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD79190D-B5BE-4AB3-8A73-51EA5447E952}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
