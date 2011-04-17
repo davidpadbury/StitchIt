@@ -67,10 +67,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Fixtures\Relative\program.js" />
+    <Content Include="Fixtures\Relative\submodule\a.js" />
+    <Content Include="Fixtures\Relative\submodule\b.js" />
     <Content Include="Fixtures\SimpleRequire\calc.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fixtures\NoModules\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

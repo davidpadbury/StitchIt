@@ -10,9 +10,20 @@ namespace StitchIt
         const string StitchItWrapperName = ResourceBase + @".stitchIt.js";
         const string StitchItModuleWrapperName = ResourceBase + @".stitchItModule.js";
 
-        public string Package(string path)
+        public string Package(string rootPath)
         {
-            var jsFiles = Directory.EnumerateFiles(path, @"*.js", SearchOption.AllDirectories);
+            // Directory should exist
+            if (!Directory.Exists(rootPath))
+            {
+                var message = string.Format("Directory not found: {0}", rootPath);
+                throw new ArgumentException(message);
+            }
+
+            // Make sure the path ends with a directory separator
+            if (rootPath[rootPath.Length - 1] != Path.DirectorySeparatorChar)
+                rootPath = rootPath + Path.DirectorySeparatorChar;
+            
+            var jsFiles = Directory.EnumerateFiles(rootPath, @"*.js", SearchOption.AllDirectories);
             var modulesBuilder = new StringBuilder();
             var moduleWrapper = GetStitchItModuleWrapper();
             var stitchItWrapper = GetStitchItWrapper();
@@ -20,7 +31,10 @@ namespace StitchIt
 
             foreach (var filePath in jsFiles)
             {
-                var identifer = GenerateIdentifier(filePath);
+                // TODO: This is a really dumb way to find the relative path
+                var relativePath = filePath.Replace(rootPath, string.Empty);
+
+                var identifer = GenerateIdentifier(relativePath);
                 var content = File.ReadAllText(filePath);
 
                 var module = moduleWrapper
@@ -42,7 +56,15 @@ namespace StitchIt
 
         private string GenerateIdentifier(string path)
         {
-            return Path.GetFileNameWithoutExtension(path);
+            var components = path.Split(Path.DirectorySeparatorChar);
+
+            // Remove extension from last component
+            var lastIndex = components.Length - 1;
+            components[lastIndex] = Path.GetFileNameWithoutExtension(components[lastIndex]);
+
+            var commonJsIdentifier = string.Join("/", components);
+
+            return commonJsIdentifier;
         }
 
         private String GetStitchItWrapper()
