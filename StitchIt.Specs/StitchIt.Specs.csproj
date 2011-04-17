@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleExportSpec.cs" />
+    <Compile Include="PackagerSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StitchIt\StitchIt.csproj">
@@ -71,6 +71,8 @@
     <Content Include="Fixtures\Relative\submodule\a.js" />
     <Content Include="Fixtures\Relative\submodule\b.js" />
     <Content Include="Fixtures\SimpleRequire\calc.js" />
+    <Content Include="Fixtures\Templates\myView.js" />
+    <Content Include="Fixtures\Templates\myViewTmpl.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

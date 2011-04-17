@@ -53,7 +53,7 @@ namespace StitchIt
                     var moduleContent = handler.Build(fileContent);
 
                     var module = moduleWrapper
-                        .Replace("**MODULE**", fileContent)
+                        .Replace("**MODULE**", moduleContent)
                         .Replace("**IDENTIFIER**", identifer);
 
                     if (separate)

@@ -6,9 +6,10 @@ namespace StitchIt
     {
         public StitchItPackager Build()
         {
-            return new StitchItPackager(new[]
+            return new StitchItPackager(new IFileHandler[]
                 {
-                    new JavaScriptFileHandler()
+                    new JavaScriptFileHandler(),
+                    new HtmlTemplateFileHandler()
                 });
         }
     }

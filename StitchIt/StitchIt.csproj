@@ -45,6 +45,7 @@
     <Compile Include="Builder\IPathBuilder.cs" />
     <Compile Include="Builder\StitchItBuilder.cs" />
     <Compile Include="DefaultStitchItPackagerFactory.cs" />
+    <Compile Include="Handlers\HtmlTemplateFileHandler.cs" />
     <Compile Include="Handlers\IFileHandler.cs" />
     <Compile Include="Handlers\JavaScriptFileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
