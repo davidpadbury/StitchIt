@@ -14,3 +14,6 @@ Thumbs.db
 
 # mstest test results
 TestResults
+
+# Vim backup files
+*~
