@@ -15,50 +15,51 @@ Using the sample from [CommonJS Module specification](http://wiki.commonjs.org/w
 
 * /Scripts/app/math.js
 <pre>
-exports.add = function() {
-    var sum = 0, i = 0, args = arguments, l = args.length;
-    while (i < l) {
-        sum += args[i++];
-    }
-    return sum;
-};
+	exports.add = function() {
+	    var sum = 0, i = 0, args = arguments, l = args.length;
+	    while (i < l) {
+		sum += args[i++];
+	    }
+	    return sum;
+	};
 </pre>
 
 * /Scripts/app/increment.js
 <pre>
-var add = require('math').add;
+	var add = require('math').add;
 
-exports.increment = function(val) {
-    return add(val, 1);
-};
+	exports.increment = function(val) {
+	    return add(val, 1);
+	};
 </pre>
 
 * /Scripts/app/program.js
 <pre>
-var inc = require('increment').increment;
-var a = 1;
-var b = inc(a);
+	var inc = require('increment').increment;
+	var a = 1;
+	var b = inc(a);
 
-console.log(b); // 2
+	console.log(b); // 2
 </pre>
 
 * Global.asax
 <pre>
-public static void RegisterRoutes(RouteCollection routes)
-{
-	...
-	routes.StitchIt()
-		.RootedAt("~/Scripts/app")
-		.PublishAt("app.js");
-	...
-}
+	public static void RegisterRoutes(RouteCollection routes)
+	{
+		...
+		routes.StitchIt()
+			.RootedAt("~/Scripts/app")
+			.PublishAt("app.js");
+		...
+	}
 </pre>
 
 * /Views/Home/Index.cshtml
 <pre>
-...
-&lt;script src="/app.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-    stitchIt.require('program');
-&lt;/script&gt;
+	...
+	&lt;script src="/app.js"&gt;&lt;/script&gt;
+	&lt;script&gt;
+	    stitchIt.require('program');
+	&lt;/script&gt;
+	...
 </pre>
