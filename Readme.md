@@ -23,6 +23,7 @@ exports.add = function() {
     return sum;
 };
 </pre>
+
 * /Scripts/app/increment.js
 <pre>
 var add = require('math').add;
@@ -31,6 +32,7 @@ exports.increment = function(val) {
     return add(val, 1);
 };
 </pre>
+
 * /Scripts/app/program.js
 <pre>
 var inc = require('increment').increment;
@@ -39,6 +41,7 @@ var b = inc(a);
 
 console.log(b); // 2
 </pre>
+
 * Global.asax
 <pre>
 public static void RegisterRoutes(RouteCollection routes)
@@ -50,6 +53,7 @@ public static void RegisterRoutes(RouteCollection routes)
 	...
 }
 </pre>
+
 * /Views/Home/Index.cshtml
 <pre>
 ...
