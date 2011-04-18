@@ -3,7 +3,7 @@ namespace StitchIt.Handlers
     public interface IFileHandler
     {
         /// <summary>
-        /// Get the file extension associated with this handler
+        /// Gets the file extension associated with this handler
         /// </summary>
         string Extension { get; }
 
