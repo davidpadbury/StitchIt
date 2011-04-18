@@ -13,23 +13,23 @@ namespace StitchIt.Handlers.CoffeeScript
         const string CompileExpressionPattern = "CoffeeScript.compile('{0}', {{bare:true}})";
 
         static readonly object EngineLock = new object();
-        static readonly ResourceReader _resourceReader = new ResourceReader();
-        static volatile ScriptEngine Engine;
+        static readonly ResourceReader ResourceReader = new ResourceReader();
+        static volatile ScriptEngine _engine;
 
         private static void CreateEngine()
         {
-            if (Engine == null)
+            if (_engine == null)
             {
                 lock (EngineLock)
                 {
-                    if (Engine == null)
+                    if (_engine == null)
                     {
                         var coffeeScriptSource = LoadCoffeeScriptSource();
 
-                        Engine = new ScriptEngine();
+                        _engine = new ScriptEngine();
                         
                         // Load coffeescript
-                        Engine.Execute(coffeeScriptSource);
+                        _engine.Execute(coffeeScriptSource);
                     }
                 }
             }
@@ -37,7 +37,7 @@ namespace StitchIt.Handlers.CoffeeScript
 
         private static string LoadCoffeeScriptSource()
         {
-            return _resourceReader.Read(CoffeeScriptResourceName);
+            return ResourceReader.Read(CoffeeScriptResourceName);
         }
 
         public CoffeeScriptCompiler()
@@ -56,7 +56,7 @@ namespace StitchIt.Handlers.CoffeeScript
                 var escapeCoffeeScript = coffeeScript.Replace("'", @"\'").Replace(Environment.NewLine, @"\n");
                 var compileExpression = string.Format(CompileExpressionPattern, escapeCoffeeScript);
 
-                return Engine.Evaluate<string>(compileExpression);
+                return _engine.Evaluate<string>(compileExpression);
             }
         }
     }
