@@ -17,7 +17,7 @@ Using the sample from [CommonJS Module specification](http://wiki.commonjs.org/w
 <pre>
 	exports.add = function() {
 	    var sum = 0, i = 0, args = arguments, l = args.length;
-	    while (i < l) {
+	    while (i &lt; l) {
 		sum += args[i++];
 	    }
 	    return sum;
