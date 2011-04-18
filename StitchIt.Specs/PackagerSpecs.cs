@@ -45,6 +45,15 @@ namespace StitchIt.Specs
         It should_have_supplied_the_template_as_a_string = () => Template.ShouldEqual(@"<div>I'm ""David""</div>");
     }
 
+    public class requiring_coffeescript_module : PackagerSpecs
+    {
+        static string Message;
+
+        Because of = () => Message = Evaluate<string>("CoffeeScript", "stitchIt.require('person').message");
+
+        It should_have_created_message = () => Message.ShouldEqual("Hi, I'm David");
+    }
+
     public abstract class PackagerSpecs
     {
         protected static ScriptEngine Engine;

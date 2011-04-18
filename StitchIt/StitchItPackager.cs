@@ -9,10 +9,10 @@ namespace StitchIt
 {
     public class StitchItPackager
     {
-        const string ResourceBase = @"StitchIt.Resources";
-        const string StitchItWrapperName = ResourceBase + @".stitchIt.js";
-        const string StitchItModuleWrapperName = ResourceBase + @".stitchItModule.js";
-
+        const string StitchItWrapperName = "stitchIt.js";
+        const string StitchItModuleWrapperName = "stitchItModule.js";
+        
+        readonly ResourceReader _resourceReader = new ResourceReader();
         readonly IEnumerable<IFileHandler> _fileHandlers;
 
         public StitchItPackager(IEnumerable<IFileHandler> fileHandlers)
@@ -85,23 +85,12 @@ namespace StitchIt
 
         private String GetStitchItWrapper()
         {
-            return GetResource(StitchItWrapperName);
+            return _resourceReader.Read(StitchItWrapperName);
         }
 
         private String GetStitchItModuleWrapper()
         {
-            return GetResource(StitchItModuleWrapperName);
-        }
-
-        private String GetResource(string name)
-        {
-            var assembly = typeof(StitchItHandler).Assembly;
-
-            using (var stream = assembly.GetManifestResourceStream(name))
-            using (var reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
+            return _resourceReader.Read(StitchItModuleWrapperName);
         }
     }
 }

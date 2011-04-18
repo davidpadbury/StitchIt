@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Jurassic">
+      <HintPath>..\lib\Jurassic\Jurassic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -45,10 +48,13 @@
     <Compile Include="Builder\IPathBuilder.cs" />
     <Compile Include="Builder\StitchItBuilder.cs" />
     <Compile Include="DefaultStitchItPackagerFactory.cs" />
+    <Compile Include="Handlers\CoffeeScriptFileHandler.cs" />
+    <Compile Include="Handlers\CoffeeScript\CoffeeScriptCompiler.cs" />
     <Compile Include="Handlers\HtmlTemplateFileHandler.cs" />
     <Compile Include="Handlers\IFileHandler.cs" />
     <Compile Include="Handlers\JavaScriptFileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceReader.cs" />
     <Compile Include="RouteCollectionExtensions.cs" />
     <Compile Include="StitchItHandler.cs" />
     <Compile Include="StitchItPackager.cs" />
@@ -59,7 +65,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\stitchItModule.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\coffee-script.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

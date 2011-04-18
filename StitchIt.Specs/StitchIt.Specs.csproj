@@ -75,6 +75,7 @@
     <Content Include="Fixtures\Templates\myViewTmpl.html" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Fixtures\CoffeeScript\person.coffee" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

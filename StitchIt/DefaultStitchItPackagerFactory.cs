@@ -9,7 +9,8 @@ namespace StitchIt
             return new StitchItPackager(new IFileHandler[]
                 {
                     new JavaScriptFileHandler(),
-                    new HtmlTemplateFileHandler()
+                    new HtmlTemplateFileHandler(),
+                    new CoffeeScriptFileHandler()
                 });
         }
     }
