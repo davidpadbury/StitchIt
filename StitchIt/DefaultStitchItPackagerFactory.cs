@@ -7,11 +7,11 @@ namespace StitchIt
         public StitchItPackager Build()
         {
             return new StitchItPackager(new IFileHandler[]
-                {
-                    new JavaScriptFileHandler(),
-                    new HtmlTemplateFileHandler(),
-                    new CoffeeScriptFileHandler()
-                });
+            {
+                new JavaScriptFileHandler(),
+                new HtmlTemplateFileHandler(),
+                new CoffeeScriptFileHandler()
+            });
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using StitchIt.Handlers;
-using System.Linq;
 
 namespace StitchIt
 {
@@ -11,7 +10,7 @@ namespace StitchIt
     {
         const string StitchItWrapperName = "stitchIt.js";
         const string StitchItModuleWrapperName = "stitchItModule.js";
-        
+
         readonly ResourceReader _resourceReader = new ResourceReader();
         readonly IEnumerable<IFileHandler> _fileHandlers;
 
@@ -22,7 +21,6 @@ namespace StitchIt
 
         public string Package(string rootPath)
         {
-            // Directory should exist
             if (!Directory.Exists(rootPath))
             {
                 var message = string.Format("Directory not found: {0}", rootPath);
@@ -30,8 +28,8 @@ namespace StitchIt
             }
 
             // Make sure the path ends with a directory separator
-            if (rootPath[rootPath.Length - 1] != Path.DirectorySeparatorChar)
-                rootPath = rootPath + Path.DirectorySeparatorChar;
+            if (!rootPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                rootPath += Path.DirectorySeparatorChar;
 
             var modulesBuilder = new StringBuilder();
             var moduleWrapper = GetStitchItModuleWrapper();
@@ -70,7 +68,7 @@ namespace StitchIt
             return stitchIt;
         }
 
-        private string GenerateIdentifier(string path)
+        private static string GenerateIdentifier(string path)
         {
             var components = path.Split(Path.DirectorySeparatorChar);
 
@@ -83,12 +81,12 @@ namespace StitchIt
             return commonJsIdentifier;
         }
 
-        private String GetStitchItWrapper()
+        private string GetStitchItWrapper()
         {
             return _resourceReader.Read(StitchItWrapperName);
         }
 
-        private String GetStitchItModuleWrapper()
+        private string GetStitchItModuleWrapper()
         {
             return _resourceReader.Read(StitchItModuleWrapperName);
         }

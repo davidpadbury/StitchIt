@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace StitchIt
@@ -12,8 +13,11 @@ namespace StitchIt
             var fullName = string.Format("{0}.{1}", @namespace, name);
 
             using (var stream = assembly.GetManifestResourceStream(fullName))
-            using (var reader = new StreamReader(stream))
             {
+                if (stream == null) throw new ArgumentException(fullName + " is not a valid resource.");
+
+                var reader = new StreamReader(stream);
+
                 return reader.ReadToEnd();
             }
         }
